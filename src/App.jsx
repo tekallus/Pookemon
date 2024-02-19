@@ -401,31 +401,38 @@ export default function App() {
 */
 
   function updatePosition() {
+    // Pookachu'nun pozisyonunu güncellemek için setPookachu kullanılır.
     setPookachu((prevPookachu) => {
+      // Geçici değişkenler kullanarak mevcut pozisyon bilgilerini kopyalıyoruz.
       let newXPosition = prevPookachu.xPosition
       let newYPosition = prevPookachu.yPosition
 
-      // Eğer Pookachu ilerlemek istiyorsa ve sınırları aşmıyorsa, ilerlemesini sağla
+      // Eğer Pookachu hareket etmek istiyorsa ve sınırları aşmıyorsa, hareketi sağla.
       if (prevPookachu.wantsToMove) {
+        // Pookachu'nun baktığı yöne göre sınırların kontrol edilmesi.
         switch (prevPookachu.direction) {
           case 'up':
+            // Eğer Pookachu y eksenindeki minimum sınırı aşmıyorsa, yukarı hareket ettir.
             if (prevPookachu.yPosition > boundaries.yAxis.min) {
-              newYPosition = prevPookachu.yPosition - 1
+              newYPosition = prevPookachu.yPosition - 1 // Yukarı hareket
             }
             break
           case 'down':
+            // Eğer Pookachu y eksenindeki maksimum sınırı aşmıyorsa, aşağı hareket ettir.
             if (prevPookachu.yPosition < boundaries.yAxis.max) {
-              newYPosition = prevPookachu.yPosition + 1
+              newYPosition = prevPookachu.yPosition + 1 // Aşağı hareket
             }
             break
           case 'left':
+            // Eğer Pookachu x eksenindeki minimum sınırı aşmıyorsa, sola hareket ettir.
             if (prevPookachu.xPosition > boundaries.xAxis.min) {
-              newXPosition = prevPookachu.xPosition - 1
+              newXPosition = prevPookachu.xPosition - 1 // Sola hareket
             }
             break
           case 'right':
+            // Eğer Pookachu x eksenindeki maksimum sınırı aşmıyorsa, sağa hareket ettir.
             if (prevPookachu.xPosition < boundaries.xAxis.max) {
-              newXPosition = prevPookachu.xPosition + 1
+              newXPosition = prevPookachu.xPosition + 1 // Sağa hareket
             }
             break
           default:
@@ -433,7 +440,7 @@ export default function App() {
         }
       }
 
-      // Yeni pozisyonu döndür
+      // Yeni pozisyonu içeren bir obje döndürülür.
       return {
         ...prevPookachu,
         xPosition: newXPosition,
